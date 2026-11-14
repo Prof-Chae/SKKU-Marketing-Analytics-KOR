@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Module 7 보충자료 | 리뷰는 무엇을 말하는가</title>
+<title>Text Analysis | 리뷰는 무엇을 말하는가</title>
 <style>
 :root{--bg:#faf9f6;--ink:#29374a;--navy:#14315c;--blue:#315c89;--gold:#8b6b31;--gold-line:#a38445;--gold-lt:#e0c88f;
   --soft:#eef2f7;--line:#cbd4df;--line2:#dce3eb;--muted:#59687c;--ok:#246a58;--bad:#b34e49;--bad-bg:#fff5f3;--ok-bg:#eef6f2}
@@ -213,17 +213,17 @@ body.side-open .sideopen{display:none}
 <button class="sideopen" id="sideOpen" aria-label="왼쪽 목차 열기">☰ 목차</button>
 <nav class="sidetoc" id="sideToc" aria-label="목차"><div class="hd">목차 <button class="btn small" id="sideClose" aria-label="왼쪽 목차 닫기">◀ 닫기</button></div><div id="sideBody"></div></nav>
 <header class="masthead" id="top"><div class="inner">
-  <div class="eyebrow">AI와 마케팅 애널리틱스 · MODULE 7 보충자료</div>
+  <div class="eyebrow">AI와 마케팅 애널리틱스 · TEXT ANALYSIS</div>
   <h1>리뷰는 무엇을 말하는가</h1>
   <p>텍스트에서 변수를 만들고, 그 숫자로 데이터를 설계한다</p>
   <p class="meta">3개 학습 모듈 · 실제 데이터(Inside Airbnb 파리·도쿄) · 연습문제와 해설</p>
-  <div class="actions"><a href="#c1">본문 읽기</a><button id="btnAllOpen">모든 절 펼치기</button><button id="btnAllClose">모든 절 접기</button><button id="btnSol">해설 모두 펼치기</button><button id="btnPrint">인쇄 / PDF 저장</button><button id="btnSave">나의 풀이 저장</button></div>
+  <div class="actions"><a href="#c1">본문 읽기</a><button id="btnAllOpen">모든 절 펼치기</button><button id="btnAllClose">모든 절 접기</button><button id="btnSol">해설 모두 펼치기</button><button id="btnPrint">인쇄 / PDF 저장</button></div>
 </div></header>
 
 <main id="main">
 
 <div class="intro">
-  <p>첫 주에 우리는 Airbnb가 리뷰를 어떻게 쓰는지 보았습니다. 이번 보충자료에서는 한 단계 더 들어가, 리뷰라는 글이 어떻게 분석할 수 있는 변수가 되는지, 그리고 그 변수를 어디에 쓸 수 있는지를 실제 데이터로 따라가 봅니다.</p>
+  <p>첫 주에 우리는 Airbnb가 리뷰를 어떻게 쓰는지 보았습니다. 이번 시간에는 한 단계 더 들어가, 리뷰라는 글이 어떻게 분석할 수 있는 변수가 되는지, 그리고 그 변수를 어디에 쓸 수 있는지를 실제 데이터로 따라가 봅니다.</p>
   <div class="flow">어떤 변수가 중요한가 → 토픽 찾기와 코딩 → 기말 프로젝트로 가져갈 것</div>
 </div>
 
@@ -567,14 +567,6 @@ $("#btnAllClose").onclick = () => $$("details.blk").forEach(d => d.open = false)
 $("#btnPrint").onclick = () => { $$("details").forEach(d => d.open = true); window.print(); };
 let solOpen = false;
 $("#btnSol").onclick = e => { solOpen = !solOpen; $$("details.sol").forEach(d => d.open = solOpen); e.target.textContent = solOpen ? "해설 모두 접기" : "해설 모두 펼치기"; };
-$("#btnSave").onclick = () => {
-  const L = ["Module 7 보충자료 — 나의 풀이", "저장 시각: " + new Date().toLocaleString("ko-KR"), ""];
-  $$("input[type=number]").forEach(el => { const lab = document.querySelector(`label[for="${el.id}"]`); if (el.value.trim()) L.push("■ " + (lab ? lab.textContent.trim() : el.id) + ": " + el.value.trim()); });
-  const lda = $$("#ldaTbl select").map((s, i) => s.value ? `  토픽 ${i + 1}: ${s.value}` : "").filter(Boolean);
-  if (lda.length) L.push("", "■ 2.3 LDA 토픽 이름", ...lda);
-  const blob = new Blob([L.join("\n")], {type: "text/plain;charset=utf-8"}), a = document.createElement("a");
-  a.href = URL.createObjectURL(blob); a.download = "Module7_나의풀이.txt"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-};
 const copy = (txt, btn) => {
   const done = () => { const o = btn.textContent; btn.textContent = "복사됨 ✓"; setTimeout(() => btn.textContent = o, 1400); };
   const fallback = () => { const ta = document.createElement("textarea"); ta.value = txt; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
